@@ -19,11 +19,18 @@ class MyApp extends StatelessWidget {
           final themeProvider = Provider.of<ThemeProvider>(context);
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: HomePage(),
             themeMode: themeProvider.themeMode,
             // themeMode: ThemeMode.system,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
+            routes: {
+              '/': (context) => MainPage(),
+              '/home': (context) => HomePage(),
+              '/detail': (context) => DetailPage(),
+              '/history': (context) => DetailPage(),
+              '/chat': (context) => DetailPage(),
+              '/profile': (context) => DetailPage(),
+            },
           );
         },
       );

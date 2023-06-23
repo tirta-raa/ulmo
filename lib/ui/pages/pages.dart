@@ -10,3 +10,4 @@ part 'login/login_page.dart';
 part 'login/register_page.dart';
 part 'login/forgot_page.dart';
 part 'home/detail_page.dart';
+part 'main_page.dart';

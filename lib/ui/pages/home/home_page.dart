@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                 shape: BoxShape.circle,
                 border: Border.all(
                   color: const Color(0XFFF6F6F6),
-                  width: 3,
+                  width: 2,
                 ),
               ),
               child: Image.asset(
