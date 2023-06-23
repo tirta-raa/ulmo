@@ -68,26 +68,33 @@ class _DetailPageState extends State<DetailPage> {
             height: 80,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Air Max 270 \n',
-                    style: regularDisplay.copyWith(
-                      fontSize: 40,
-                      color: Theme.of(context).primaryColor,
-                    ),
+            padding: const EdgeInsets.only(left: 32),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Air Max 270 \n',
+                        style: regularDisplay.copyWith(
+                          fontSize: 40,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Sneakers',
+                        style: boldDisplay.copyWith(
+                          fontSize: 40,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                    ],
                   ),
-                  TextSpan(
-                    text: 'Sneakers',
-                    style: boldDisplay.copyWith(
-                      fontSize: 40,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                LikeButton(),
+              ],
             ),
           ),
         ],
@@ -254,10 +261,6 @@ class _DetailPageState extends State<DetailPage> {
                 _purchasingButton(),
               ],
             ),
-            const SizedBox(
-              height: 50,
-            ),
-            CustomBottomNavbar(),
             const SizedBox(
               height: 50,
             ),

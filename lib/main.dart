@@ -23,14 +23,15 @@ class MyApp extends StatelessWidget {
             // themeMode: ThemeMode.system,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
-            routes: {
-              '/': (context) => MainPage(),
-              '/home': (context) => HomePage(),
-              '/detail': (context) => DetailPage(),
-              '/history': (context) => DetailPage(),
-              '/chat': (context) => DetailPage(),
-              '/profile': (context) => DetailPage(),
-            },
+            // routes: {
+            //   '/': (context) => MainPage(),
+            //   '/home': (context) => HomePage(),
+            //   '/detail': (context) => DetailPage(),
+            //   '/history': (context) => DetailPage(),
+            //   '/chat': (context) => DetailPage(),
+            //   '/profile': (context) => DetailPage(),
+            // },
+            home: DetailPage(),
           );
         },
       );
