@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 TextStyle boldDisplay = const TextStyle(
   fontFamily: 'SF UI Display',
@@ -36,4 +37,11 @@ class MyThemes {
     primaryColor: const Color(0xFF152354),
     cardColor: const Color(0xFFF8F8FA),
   );
+}
+
+//sizebox
+extension SizeBoxExtension on int {
+  Widget get widthBox => SizedBox(width: this.w);
+
+  Widget get heightBox => SizedBox(height: this.h);
 }

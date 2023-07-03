@@ -17,7 +17,7 @@ class _LikeButtonState extends State<LikeButton> {
   }
 
   Future<void> _loadRiveFile() async {
-    final bytes = await rootBundle.load('assets/like.riv');
+    final bytes = await rootBundle.load('assets/rive/like.riv');
     final file = RiveFile.import(bytes);
 
     setState(() {

@@ -82,8 +82,8 @@ class CustomTabBar extends StatelessWidget {
               onTap(-1); // Trigger onTap with index -1 for "All"
             },
             child: Container(
-              width: 75,
-              height: 68,
+              width: 75.w,
+              height: 68.h,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: isAllSelected ? blueColor : Theme.of(context).cardColor,
@@ -98,14 +98,14 @@ class CustomTabBar extends StatelessWidget {
               ),
             ),
           ),
-        isFirstCategory ? const SizedBox(width: 20) : const SizedBox(),
+        isFirstCategory ? SizedBox(width: 20.w) : const SizedBox(),
         GestureDetector(
           onTap: () {
             onTap(mockCategory.indexOf(category));
           },
           child: Container(
-            width: isSelected ? 128 : 75,
-            height: 68,
+            width: isSelected ? 128.w : 75.w,
+            height: 68.h,
             decoration: BoxDecoration(
               shape: isSelected ? BoxShape.rectangle : BoxShape.circle,
               borderRadius: isSelected ? BorderRadius.circular(60) : null,
@@ -115,8 +115,8 @@ class CustomTabBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 40,
-                  height: 40,
+                  width: 40.w,
+                  height: 40.h,
                   child: Image.asset(
                     category.image,
                     color: isSelected
@@ -124,7 +124,7 @@ class CustomTabBar extends StatelessWidget {
                         : Theme.of(context).primaryColor,
                   ),
                 ),
-                isSelected ? const SizedBox(width: 6) : const SizedBox(),
+                isSelected ? SizedBox(width: 6.w) : const SizedBox(),
                 isSelected
                     ? Text(
                         category.text,

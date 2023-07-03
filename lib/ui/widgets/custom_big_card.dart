@@ -15,8 +15,8 @@ class CustomBigCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 170,
-          height: 210,
+          width: 170.w,
+          height: 210.h,
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(24),
@@ -27,34 +27,32 @@ class CustomBigCard extends StatelessWidget {
               child: product != null
                   ? Image.asset(
                       product!.image,
-                      width: 153,
-                      height: 86,
+                      width: 153.w,
+                      height: 86.h,
                       fit: BoxFit.cover,
                     )
                   : const SizedBox(),
             ),
           ),
         ),
-        const SizedBox(
-          height: 16,
-        ),
+        16.heightBox,
         product != null
             ? Text(
                 product!.title,
                 style: lightDisplay.copyWith(
-                  fontSize: 20,
+                  fontSize: 20.w,
                   color: Theme.of(context).primaryColor,
                 ),
               )
             : const SizedBox(),
-        const SizedBox(
-          height: 8,
+        SizedBox(
+          height: 8.h,
         ),
         product != null
             ? Text(
                 '\$ ${product!.price}',
                 style: semiBoldDisplay.copyWith(
-                  fontSize: 22,
+                  fontSize: 22.w,
                   color: Theme.of(context).primaryColor,
                 ),
               )

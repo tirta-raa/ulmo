@@ -20,19 +20,15 @@ class _ForgotPageState extends State<ForgotPage> {
               h2: 'Forgot your Password?',
               h3: 'Enter email address we’ll send \nyou an email',
             ),
-            const SizedBox(
-              height: 42,
-            ),
+            42.heightBox,
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
+              padding: EdgeInsets.symmetric(horizontal: 32.w),
               child: CustomTextField(
                 label: 'Email',
                 text: 'enter your email',
               ),
             ),
-            const SizedBox(
-              height: 24,
-            ),
+            24.heightBox,
             CustomButton(
               onPressed: () {},
               text: 'Send Mail',

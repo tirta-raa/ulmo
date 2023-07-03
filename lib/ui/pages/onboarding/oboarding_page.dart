@@ -21,9 +21,7 @@ class OnboardingPage extends StatelessWidget {
               height: 257,
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          20.heightBox,
           Padding(
             padding: const EdgeInsets.only(left: 32),
             child: Text(
@@ -34,9 +32,7 @@ class OnboardingPage extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 40,
-          ),
+          40.heightBox,
           CustomButton(
             text: 'Get Started',
             onPressed: () {},

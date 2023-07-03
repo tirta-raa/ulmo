@@ -59,17 +59,13 @@ class _RegisterPageState extends State<RegisterPage> {
               h2: 'Create and Account',
               h3: 'Enter email address to create \nan account!',
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            40.heightBox,
             GoogleButton(
               onTap: () {},
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            32.heightBox,
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 32),
+              margin: EdgeInsets.symmetric(horizontal: 32.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -78,17 +74,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     label: 'User Name',
                     text: 'enter your username',
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  30.heightBox,
                   CustomTextField(
                     controller: _emailController,
                     label: 'Email',
                     text: 'enter your email',
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  30.heightBox,
                   CustomTextField(
                     controller: _passwordController,
                     label: 'Password',
@@ -97,17 +89,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 25,
-            ),
+            25.heightBox,
             CustomButton(
               onPressed: _isButtonEnabled ? _handleLogin : null,
               text: 'Register',
               color: _isButtonEnabled ? blueColor : blueColor.withOpacity(0.5),
             ),
-            const SizedBox(
-              height: 34,
-            ),
+            34.heightBox,
           ],
         ),
       ),

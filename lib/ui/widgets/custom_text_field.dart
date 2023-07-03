@@ -26,16 +26,14 @@ class CustomTextField extends StatelessWidget {
         Text(
           label,
           style: regularDisplay.copyWith(
-            fontSize: 20,
+            fontSize: 20.w,
             color: const Color(0xFF8A91A9),
           ),
         ),
-        const SizedBox(
-          height: 22,
-        ),
+        22.heightBox,
         Container(
           width: double.infinity,
-          height: 66,
+          height: 66.w,
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(109),
@@ -43,7 +41,7 @@ class CustomTextField extends StatelessWidget {
           child: TextFormField(
             obscureText: obscureText,
             controller: controller,
-            style: regularDisplay.copyWith(fontSize: 18),
+            style: regularDisplay.copyWith(fontSize: 18.w),
             decoration: InputDecoration(
               errorBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
@@ -57,7 +55,7 @@ class CustomTextField extends StatelessWidget {
               contentPadding: const EdgeInsets.all(24),
               hintText: text,
               hintStyle: lightDisplay.copyWith(
-                fontSize: 18,
+                fontSize: 18.w,
                 color: const Color(0xFF8A91A9),
               ),
             ),

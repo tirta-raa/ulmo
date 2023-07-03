@@ -22,8 +22,8 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      margin: EdgeInsets.symmetric(horizontal: 16.h),
       decoration: BoxDecoration(
         color: const Color(0xFF152354),
         borderRadius: BorderRadius.circular(60),
@@ -60,16 +60,16 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
                 children: [
                   if (bottomNavs[index].isSelected)
                     Container(
-                      width: 50,
-                      height: 50,
+                      width: 50.w,
+                      height: 50.h,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.white,
                       ),
                     ),
                   SizedBox(
-                    height: 34,
-                    width: 34,
+                    height: 34.h,
+                    width: 34.w,
                     child: ColorFiltered(
                       colorFilter: ColorFilter.mode(
                           bottomNavs[index].color, BlendMode.srcATop),
@@ -120,19 +120,19 @@ class RiveAsset {
 }
 
 List<RiveAsset> bottomNavs = [
-  RiveAsset("assets/icon-set.riv",
+  RiveAsset("assets/rive/icon-set.riv",
       artboard: "HOME", stateMachineName: "HOME_interactivity", title: "Home"),
-  RiveAsset("assets/icon-set.riv",
+  RiveAsset("assets/rive/icon-set.riv",
       artboard: "SEARCH",
       stateMachineName: "SEARCH_Interactivity",
       title: "Search"),
-  RiveAsset("assets/icon-set.riv",
+  RiveAsset("assets/rive/icon-set.riv",
       artboard: "TIMER",
       stateMachineName: "TIMER_Interactivity",
       title: "Chat"),
-  RiveAsset("assets/icon-set.riv",
+  RiveAsset("assets/rive/icon-set.riv",
       artboard: "CHAT", stateMachineName: "CHAT_Interactivity", title: "Chat"),
-  RiveAsset("assets/icon-set.riv",
+  RiveAsset("assets/rive/icon-set.riv",
       artboard: "USER",
       stateMachineName: "USER_Interactivity",
       title: "Profile"),

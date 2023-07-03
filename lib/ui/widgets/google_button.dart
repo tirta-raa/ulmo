@@ -14,8 +14,8 @@ class GoogleButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        height: 71,
-        margin: const EdgeInsets.symmetric(horizontal: 32),
+        height: 71.h,
+        margin: EdgeInsets.symmetric(horizontal: 32.w),
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(46),
@@ -33,14 +33,12 @@ class GoogleButton extends StatelessWidget {
           children: [
             Image.asset(
               'assets/g.png',
-              width: 30,
+              width: 30.w,
             ),
-            const SizedBox(
-              width: 12,
-            ),
+            12.widthBox,
             Text(
               'Continue with Google',
-              style: regularDisplay.copyWith(fontSize: 18),
+              style: regularDisplay.copyWith(fontSize: 18.w),
             ),
           ],
         ),

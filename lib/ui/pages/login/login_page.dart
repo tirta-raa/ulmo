@@ -56,15 +56,11 @@ class _LoginPageState extends State<LoginPage> {
               h2: 'Welcome Back!',
               h3: 'Enter password to get back your \naccount!',
             ),
-            const SizedBox(
-              height: 66,
-            ),
+            66.heightBox,
             GoogleButton(
               onTap: () {},
             ),
-            const SizedBox(
-              height: 42,
-            ),
+            42.heightBox,
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 32),
               child: Column(
@@ -75,18 +71,14 @@ class _LoginPageState extends State<LoginPage> {
                     label: 'Email',
                     text: 'enter your username',
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  40.heightBox,
                   CustomTextField(
                     controller: _passwordController,
                     label: 'Password',
                     text: 'Password',
                     obscureText: true,
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  24.heightBox,
                   InkWell(
                     onTap: () {
                       setState(() {
@@ -99,9 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.check_circle,
                           color: remember ? blueColor : const Color(0xFF8A91A9),
                         ),
-                        const SizedBox(
-                          width: 12,
-                        ),
+                        12.widthBox,
                         Text(
                           'Rember me',
                           style: regularDisplay.copyWith(fontSize: 15),
@@ -112,17 +102,13 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 42,
-            ),
+            42.heightBox,
             CustomButton(
               text: 'Log In',
               onPressed: _isButtonEnabled ? _handleLogin : null,
               color: _isButtonEnabled ? blueColor : blueColor.withOpacity(0.5),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            20.heightBox,
             TextButton(
               onPressed: () {},
               child: Text(
@@ -130,9 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: regularDisplay.copyWith(color: blueColor),
               ),
             ),
-            const SizedBox(
-              height: 91,
-            ),
+            91.heightBox,
           ],
         ),
       ),
@@ -155,39 +139,33 @@ class _HeaderText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 32),
+      margin: EdgeInsets.only(left: 32.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 30,
-          ),
+          32.heightBox,
           Center(
             child: Text(
               h1,
               style: boldDisplay.copyWith(
-                fontSize: 20,
+                fontSize: 20.w,
                 color: Theme.of(context).primaryColor,
               ),
             ),
           ),
-          const SizedBox(
-            height: 68,
-          ),
+          68.heightBox,
           Text(
             h2,
             style: boldDisplay.copyWith(
-              fontSize: 30,
+              fontSize: 30.w,
               color: Theme.of(context).primaryColor,
             ),
           ),
-          const SizedBox(
-            height: 14,
-          ),
+          14.heightBox,
           Text(
             h3,
             style: regularDisplay.copyWith(
-              fontSize: 22,
+              fontSize: 22.w,
               color: Theme.of(context).primaryColor,
             ),
           ),

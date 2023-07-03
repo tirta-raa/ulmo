@@ -18,18 +18,71 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _showModalBottomSheet() {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (BuildContext context) => _modalBotomSheet(),
+    );
+  }
+
+  _modalBotomSheet() {
+    return Container(
+      height: 583.h,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(40).r,
+            topRight: const Radius.circular(40).r,
+          )),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          32.heightBox,
+          Center(
+            child: Text(
+              'FILTERS',
+              style: semiBoldDisplay.copyWith(
+                fontSize: 20.w,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
+          34.heightBox,
+          Padding(
+            padding: EdgeInsets.only(left: 32.w),
+            child: Text(
+              'Price Range',
+              style: semiBoldDisplay.copyWith(
+                fontSize: 16.w,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
+          24.heightBox,
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final Sidebar _sidebar = Sidebar();
+
     Widget _appBar() {
       return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 32),
+        margin: EdgeInsets.symmetric(
+          horizontal: 32.w,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
-              width: 56,
-              height: 56,
+              padding: const EdgeInsets.all(10).r,
+              width: 56.w,
+              height: 56.h,
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 shape: BoxShape.circle,
@@ -38,15 +91,22 @@ class _HomePageState extends State<HomePage> {
                   width: 2,
                 ),
               ),
-              child: Image.asset(
-                'assets/drawer-icon.png',
-                color: Theme.of(context).primaryColor,
+              child: InkWell(
+                onTap: () {
+                  _scaffoldKey.currentState?.openDrawer();
+                },
+                child: Image.asset(
+                  'assets/drawer-icon.png',
+                  color: Theme.of(context).primaryColor,
+                  width: 24.w,
+                  height: 24.h,
+                ),
               ),
             ),
             Text(
               'Home',
               style: boldDisplay.copyWith(
-                fontSize: 20,
+                fontSize: 20.w,
                 color: Theme.of(context).primaryColor,
               ),
             ),
@@ -58,7 +118,7 @@ class _HomePageState extends State<HomePage> {
 
     Widget _header() {
       return Container(
-        margin: const EdgeInsets.only(left: 32),
+        margin: EdgeInsets.only(left: 24.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -68,27 +128,43 @@ class _HomePageState extends State<HomePage> {
                   TextSpan(
                     text: 'Enjoy New Like \n',
                     style: regularDisplay.copyWith(
-                      fontSize: 36,
+                      fontSize: 36.w,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
                   TextSpan(
                     text: 'Product',
                     style: boldDisplay.copyWith(
-                      fontSize: 36,
+                      fontSize: 36.w,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ],
               ),
             ),
-            InkWell(
-              onTap: () {},
-              child: Image.asset(
-                'assets/filtter.png',
-                width: 74,
-                height: 72,
-                fit: BoxFit.cover,
+            Container(
+              padding: EdgeInsets.fromLTRB(25.w, 18.h, 15.w, 18.h),
+              width: 74.w,
+              height: 74.h,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFF5545),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFFFF5545).withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 50,
+                    offset: const Offset(10, 10),
+                  )
+                ],
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(30).r,
+                  bottomLeft: const Radius.circular(30).r,
+                ),
+              ),
+              child: FilterButton(
+                onTap: () {
+                  _showModalBottomSheet();
+                },
               ),
             ),
           ],
@@ -102,7 +178,7 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           children: [
             Padding(
-              padding: EdgeInsets.only(right: 20, left: 32),
+              padding: const EdgeInsets.only(right: 20, left: 24).w,
               child: CustomTabBar(
                 category: mockCategory.first,
                 selectedIndex: selectedIndex,
@@ -114,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                 .sublist(1)
                 .map(
                   (e) => Padding(
-                    padding: EdgeInsets.only(right: 20),
+                    padding: EdgeInsets.only(right: 20.w),
                     child: CustomTabBar(
                       category: e,
                       selectedIndex: selectedIndex,
@@ -131,25 +207,21 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      key: _scaffoldKey,
+      drawer: Drawer(
+        child: _sidebar,
+      ),
       body: SafeArea(
         bottom: false,
         child: ListView(
           children: [
-            const SizedBox(
-              height: 34,
-            ),
+            34.heightBox,
             _appBar(),
-            const SizedBox(
-              height: 54,
-            ),
+            54.heightBox,
             _header(),
-            const SizedBox(
-              height: 40,
-            ),
+            40.heightBox,
             _tabbar(),
-            const SizedBox(
-              height: 32,
-            ),
+            32.heightBox,
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -159,23 +231,22 @@ class _HomePageState extends State<HomePage> {
                 int endIndex = startIndex + 1;
 
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: Row(
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 32),
+                          padding: EdgeInsets.only(bottom: 32.h),
                           child: CustomBigCard(
                             product: mockProduct[startIndex],
                           ),
                         ),
                       ),
-                      if (endIndex < mockProduct.length)
-                        const SizedBox(width: 22),
+                      if (endIndex < mockProduct.length) SizedBox(width: 22.w),
                       if (endIndex < mockProduct.length)
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom: 32),
+                            padding: EdgeInsets.only(bottom: 32.w),
                             child: CustomBigCard(
                               product: mockProduct[endIndex],
                             ),

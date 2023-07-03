@@ -15,19 +15,19 @@ class _DetailPageState extends State<DetailPage> {
     //
     Widget _appBar() {
       return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 32),
+        margin: EdgeInsets.symmetric(horizontal: 24.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
-              width: 56,
-              height: 56,
+              padding: EdgeInsets.all(10.r),
+              width: 56.w,
+              height: 56.h,
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: const Color(0XFFF6F6F6),
+                  color: Color(0XFFF6F6F6),
                   width: 2,
                 ),
               ),
@@ -39,7 +39,7 @@ class _DetailPageState extends State<DetailPage> {
             Text(
               'Detail',
               style: boldDisplay.copyWith(
-                fontSize: 20,
+                fontSize: 20.w,
                 color: Theme.of(context).primaryColor,
               ),
             ),
@@ -49,12 +49,12 @@ class _DetailPageState extends State<DetailPage> {
       );
     }
 
-    Widget _product() {
+    Widget _productImage() {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 56, right: 36),
+            padding: const EdgeInsets.only(left: 56, right: 36).w,
             child: Center(
               child: Image.asset(
                 'assets/shoes2.png',
@@ -64,134 +64,116 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 80,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 32),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Air Max 270 \n',
-                        style: regularDisplay.copyWith(
-                          fontSize: 40,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                      TextSpan(
-                        text: 'Sneakers',
-                        style: boldDisplay.copyWith(
-                          fontSize: 40,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                LikeButton(),
-              ],
-            ),
-          ),
         ],
+      );
+    }
+
+    Widget _productName() {
+      return RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: 'Air Max 270 \n',
+              style: regularDisplay.copyWith(
+                fontSize: 40.w,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+            TextSpan(
+              text: 'Sneakers',
+              style: boldDisplay.copyWith(
+                fontSize: 40.w,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ],
+        ),
       );
     }
 
     Widget _materialStructure() {
       return Container(
-        margin: const EdgeInsets.only(left: 32),
+        margin: EdgeInsets.only(left: 32.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Structure',
               style: semiBoldDisplay.copyWith(
-                fontSize: 22,
+                fontSize: 22.w,
                 color: Theme.of(context).primaryColor,
               ),
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            32.heightBox,
             RichText(
               text: TextSpan(
                 children: [
                   TextSpan(
                     text: 'Outer Material: ',
                     style: regularDisplay.copyWith(
-                      fontSize: 16,
+                      fontSize: 16.w,
                       color: const Color(0xFF8C94A0),
                     ),
                   ),
                   TextSpan(
                     text: 'Rubber 100%',
                     style: regularDisplay.copyWith(
-                      fontSize: 16,
+                      fontSize: 16.w,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            20.heightBox,
             RichText(
               text: TextSpan(
                 children: [
                   TextSpan(
                     text: 'Lining: ',
                     style: regularDisplay.copyWith(
-                      fontSize: 16,
+                      fontSize: 16.w,
                       color: const Color(0xFF8C94A0),
                     ),
                   ),
                   TextSpan(
                     text: 'Rubber 100%',
                     style: regularDisplay.copyWith(
-                      fontSize: 16,
+                      fontSize: 16.w,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            20.heightBox,
             RichText(
               text: TextSpan(
                 children: [
                   TextSpan(
                     text: 'Sole: ',
                     style: regularDisplay.copyWith(
-                      fontSize: 16,
+                      fontSize: 16.w,
                       color: const Color(0xFF8C94A0),
                     ),
                   ),
                   TextSpan(
                     text: 'Rubber 100%',
                     style: regularDisplay.copyWith(
-                      fontSize: 16,
+                      fontSize: 16.w,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 24,
-            ),
+            24.heightBox,
             TextButton(
               onPressed: () {},
               child: Text(
                 '...   Detail',
                 style: regularDisplay.copyWith(
-                  fontSize: 20,
+                  fontSize: 20.w,
                   color: blueColor,
                 ),
               ),
@@ -205,8 +187,8 @@ class _DetailPageState extends State<DetailPage> {
       return Container(
         margin:
             EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
-        width: 99,
-        height: 157,
+        width: 100.w,
+        height: 200.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
           color: blueColor,
@@ -217,16 +199,14 @@ class _DetailPageState extends State<DetailPage> {
             children: [
               Image.asset(
                 'assets/bag-icon.png',
-                width: 30,
-                height: 30,
+                width: 30.w,
+                height: 30.h,
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              30.heightBox,
               Text(
                 '\$ 350',
                 style: semiBoldDisplay.copyWith(
-                  fontSize: 16,
+                  fontSize: 16.w,
                   color: Colors.white,
                 ),
               ),
@@ -242,28 +222,32 @@ class _DetailPageState extends State<DetailPage> {
         bottom: false,
         child: ListView(
           children: [
-            const SizedBox(
-              height: 34,
-            ),
+            34.heightBox,
             _appBar(),
-            const SizedBox(
-              height: 85,
+            85.heightBox,
+            _productImage(),
+            80.heightBox,
+            Padding(
+              padding: EdgeInsets.only(left: 34.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _productName(),
+                  LikeButton(),
+                ],
+              ),
             ),
-            _product(),
-            const SizedBox(
-              height: 32,
-            ),
+            32.heightBox,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 _materialStructure(),
+                62.heightBox,
                 _purchasingButton(),
               ],
             ),
-            const SizedBox(
-              height: 50,
-            ),
+            50.heightBox,
           ],
         ),
       ),

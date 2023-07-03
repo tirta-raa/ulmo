@@ -28,7 +28,7 @@ class CustomButton extends StatelessWidget {
     return Container(
       margin: margin,
       width: width,
-      height: height,
+      height: height?.h,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(24),

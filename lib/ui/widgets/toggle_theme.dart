@@ -20,7 +20,7 @@ class _ToggleThemeState extends State<ToggleTheme> {
   }
 
   Future<void> _loadRiveFile(bool isDarkMode) async {
-    final bytes = await rootBundle.load('assets/switch.riv');
+    final bytes = await rootBundle.load('assets/rive/switch.riv');
     final file = RiveFile.import(bytes);
 
     setState(() {
