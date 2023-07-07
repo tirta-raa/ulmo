@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                 //   '/chat': (context) => DetailPage(),
                 //   '/profile': (context) => DetailPage(),
                 // },
-                home: HomePage(),
+                home: CartPage(),
               );
             },
           );

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulmo/ui/widgets/widgets.dart';
 import '../../theme/theme.dart';
 import 'package:ulmo/models/models.dart';
+import 'package:flutter/services.dart';
 
 part 'home/home_page.dart';
 part 'onboarding/splas_page.dart';
@@ -13,3 +14,5 @@ part 'login/forgot_page.dart';
 part 'home/detail_page.dart';
 part 'main_page.dart';
 part 'home/sidebar.dart';
+part 'category/category_page.dart';
+part 'cart/cart_page.dart';

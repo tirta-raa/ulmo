@@ -1,4 +1,4 @@
-part of 'widgets.dart';
+part of '../widgets.dart';
 
 // ignore: must_be_immutable
 class GoogleButton extends StatelessWidget {

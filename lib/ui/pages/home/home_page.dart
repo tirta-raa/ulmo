@@ -18,58 +18,10 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _showModalBottomSheet() {
-    showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (BuildContext context) => _modalBotomSheet(),
-    );
-  }
-
-  _modalBotomSheet() {
-    return Container(
-      height: 583.h,
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(40).r,
-            topRight: const Radius.circular(40).r,
-          )),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          32.heightBox,
-          Center(
-            child: Text(
-              'FILTERS',
-              style: semiBoldDisplay.copyWith(
-                fontSize: 20.w,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ),
-          34.heightBox,
-          Padding(
-            padding: EdgeInsets.only(left: 32.w),
-            child: Text(
-              'Price Range',
-              style: semiBoldDisplay.copyWith(
-                fontSize: 16.w,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ),
-          24.heightBox,
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-    final Sidebar _sidebar = Sidebar();
+    const Sidebar _sidebar = Sidebar();
 
     Widget _appBar() {
       return Container(
@@ -162,9 +114,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               child: FilterButton(
-                onTap: () {
-                  _showModalBottomSheet();
-                },
+                onTap: () {},
               ),
             ),
           ],
