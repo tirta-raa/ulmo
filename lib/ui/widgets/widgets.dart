@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:ulmo/utils/rive_utils.dart';
 
 part 'button/custom_button.dart';
-part 'custom_text_field.dart';
+part 'text_field/custom_text_field.dart';
 part 'button/google_button.dart';
 part 'button/toggle_theme.dart';
 part 'navbar/custom_tabbar.dart';
@@ -22,3 +23,4 @@ part 'button/filter_button.dart';
 part 'button/custom_text_button.dart';
 part 'card/gender_card.dart';
 part 'card/banner_card.dart';
+part 'card/chart_card.dart';

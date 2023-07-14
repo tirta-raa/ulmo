@@ -16,3 +16,7 @@ part 'main_page.dart';
 part 'home/sidebar.dart';
 part 'category/category_page.dart';
 part 'cart/cart_page.dart';
+part 'cart/checkout_page.dart';
+part 'cart/order_success.dart';
+part 'setting/change_address_page.dart';
+part 'setting/profile_page.dart';
