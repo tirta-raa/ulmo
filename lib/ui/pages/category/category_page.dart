@@ -134,7 +134,7 @@ class _CategoryPageState extends State<CategoryPage> {
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 32).w,
                 padding: EdgeInsets.only(bottom: 24.h),
-                child: BannerCard(
+                child: CategoryCard(
                   product: mockProduct[index],
                   onTap: () {},
                 ),

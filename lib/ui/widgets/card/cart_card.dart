@@ -1,12 +1,15 @@
 part of '../widgets.dart';
 
-class ChartListItem extends StatelessWidget {
-  const ChartListItem({
+class CartCard extends StatelessWidget {
+  CartModel? cart;
+  CartCard(
+    this.cart, {
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Row(
       children: [
         Container(
@@ -19,8 +22,8 @@ class ChartListItem extends StatelessWidget {
           child: Center(
             child: RotationTransition(
               turns: const AlwaysStoppedAnimation(15 / 360),
-              child: Image.asset(
-                'assets/shoes1.png',
+              child: Image.network(
+                cart?.product!.galleries![0].url ?? '',
                 width: 153.w,
                 height: 86.h,
                 fit: BoxFit.contain,
@@ -29,73 +32,80 @@ class ChartListItem extends StatelessWidget {
           ),
         ),
         21.widthBox,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Air Zoom',
-              style: lightDisplay.copyWith(
-                fontSize: 20,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-            8.heightBox,
-            Text(
-              '\$ 650',
-              style: semiBoldDisplay.copyWith(
-                fontSize: 22,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-            22.heightBox,
-            Row(
-              children: [
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    width: 25.w,
-                    height: 25.h,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: blueColor,
-                    ),
-                    child: Center(
-                      child: Icon(Icons.add, size: 20.w),
-                    ),
-                  ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                cart!.product!.name ?? '',
+                style: lightDisplay.copyWith(
+                  fontSize: 20,
+                  color: Theme.of(context).primaryColor,
                 ),
-                16.widthBox,
-                Text(
-                  1.toString(),
-                  style: semiBoldDisplay.copyWith(
-                    fontSize: 20,
-                    color: Theme.of(context).primaryColor,
-                  ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              8.heightBox,
+              Text(
+                '\$ ${cart!.product!.price}',
+                style: semiBoldDisplay.copyWith(
+                  fontSize: 22,
+                  color: Theme.of(context).primaryColor,
                 ),
-                16.widthBox,
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    width: 25.w,
-                    height: 25.h,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.transparent,
-                      border: Border.all(
+              ),
+              22.heightBox,
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      cartProvider.addQuantity(cart!);
+                    },
+                    child: Container(
+                      width: 25.w,
+                      height: 25.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
                         color: blueColor,
-                        width: 1,
+                      ),
+                      child: Center(
+                        child: Icon(Icons.add, size: 20.w),
                       ),
                     ),
-                    child: Center(
-                      child: Icon(Icons.remove, size: 20.w),
+                  ),
+                  16.widthBox,
+                  Text(
+                    cart!.quantity.toString(),
+                    style: semiBoldDisplay.copyWith(
+                      fontSize: 20,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  16.widthBox,
+                  InkWell(
+                    onTap: () {
+                      cartProvider.reduceQuantity(cart!);
+                    },
+                    child: Container(
+                      width: 25.w,
+                      height: 25.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.transparent,
+                        border: Border.all(
+                          color: blueColor,
+                          width: 1,
+                        ),
+                      ),
+                      child: Center(
+                        child: Icon(Icons.remove, size: 20.w),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-        const Spacer(),
         GestureDetector(
           onTap: () {
             showDialog(
@@ -119,6 +129,7 @@ class ChartListItem extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
+                        cartProvider.removeChart(cart!.id ?? 0);
                         Navigator.of(context).pop();
                       },
                     ),

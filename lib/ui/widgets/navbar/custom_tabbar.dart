@@ -55,7 +55,7 @@ part of '../widgets.dart';
 // }
 
 class CustomTabBar extends StatelessWidget {
-  final CategoryModel category;
+  final MockCategoryModel category;
   final int selectedIndex;
   final Function(int) onTap;
   final int firstCategoryIndex;

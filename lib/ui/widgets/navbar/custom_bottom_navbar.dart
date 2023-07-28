@@ -14,14 +14,15 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
   List<String> routeNames = [
     '/home', // Add your route names here
     '/detail',
-    '/history',
+    '/cart',
     '/chat',
-    '/profile',
+    '/setting',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 86.h,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       margin: EdgeInsets.symmetric(horizontal: 16.h),
       decoration: BoxDecoration(

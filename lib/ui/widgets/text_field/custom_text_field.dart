@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
   TextEditingController? controller;
   String text;
   bool obscureText;
+  bool scrollView;
 
   CustomTextField({
     super.key,
@@ -19,7 +20,8 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.height = 66,
     this.radiusCircular = 66,
-    required this.text,
+    this.text = '',
+    this.scrollView = false,
   });
 
   @override
@@ -42,36 +44,67 @@ class CustomTextField extends StatelessWidget {
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(radiusCircular),
           ),
-          child: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: height.w,
-              ),
-              child: TextFormField(
-                maxLines: null, // Allow multiline input
-                obscureText: obscureText,
-                controller: controller,
-                style: regularDisplay.copyWith(fontSize: 18.w),
-                decoration: InputDecoration(
-                  errorBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xFFFF4242),
+          child: (scrollView == true)
+              ? SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: height.w,
+                    ),
+                    child: TextFormField(
+                      maxLines: null, // Allow multiline input
+                      obscureText: obscureText,
+                      controller: controller,
+                      style: regularDisplay.copyWith(fontSize: 18.w),
+                      decoration: InputDecoration(
+                        errorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFFFF4242),
+                          ),
+                        ),
+                        focusedErrorBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                        ),
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.only(
+                          left: 24.w,
+                          top: 24.h,
+                          bottom: 24.h,
+                        ),
+                        hintText: text,
+                        hintStyle: lightDisplay.copyWith(
+                          fontSize: 18.w,
+                          color: const Color(0xFF8A91A9),
+                        ),
+                      ),
                     ),
                   ),
-                  focusedErrorBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.transparent),
-                  ),
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.all(24),
-                  hintText: text,
-                  hintStyle: lightDisplay.copyWith(
-                    fontSize: 18.w,
-                    color: const Color(0xFF8A91A9),
+                )
+              : TextFormField(
+                  obscureText: obscureText,
+                  controller: controller,
+                  style: regularDisplay.copyWith(fontSize: 18.w),
+                  decoration: InputDecoration(
+                    errorBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xFFFF4242),
+                      ),
+                    ),
+                    focusedErrorBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.transparent),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(
+                      left: 24.w,
+                      top: 24.h,
+                      bottom: 24.h,
+                    ),
+                    hintText: text,
+                    hintStyle: lightDisplay.copyWith(
+                      fontSize: 18.w,
+                      color: const Color(0xFF8A91A9),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
         ),
       ],
     );

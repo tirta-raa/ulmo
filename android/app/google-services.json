@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "884653003453",
+    "project_id": "ulmo-912b8",
+    "storage_bucket": "ulmo-912b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884653003453:android:d3e629672bc46e9ad71dd4",
+        "android_client_info": {
+          "package_name": "com.example.ulmo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884653003453-k3r2nt19akkfp6r22tr1vtgvd0o680is.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcuJt45KVBLlawJb6yCq15JOryopyQ5Qc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884653003453-k3r2nt19akkfp6r22tr1vtgvd0o680is.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,7 @@
 part of '../pages.dart';
 
-class OrderSuccess extends StatelessWidget {
-  const OrderSuccess({super.key});
+class OrderSuccessPage extends StatelessWidget {
+  const OrderSuccessPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,10 @@ class OrderSuccess extends StatelessWidget {
               ),
               30.heightBox,
               CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/order-sumary', (route) => false);
+                },
                 text: 'Order Other Shoes',
               ),
             ],

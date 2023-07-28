@@ -3,7 +3,8 @@
 part of '../pages.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({super.key});
+  final ProductModel? product;
+  DetailPage(this.product);
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -12,28 +13,37 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
-    //
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
+    final controller = PageController(viewportFraction: 0.8, keepPage: true);
+
     Widget _appBar() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 24.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              padding: EdgeInsets.all(10.r),
-              width: 56.w,
-              height: 56.h,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: Color(0XFFF6F6F6),
-                  width: 2,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                padding: EdgeInsets.all(10.r),
+                width: 56.w,
+                height: 56.h,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: const Color(0XFFF6F6F6),
+                    width: 2,
+                  ),
                 ),
-              ),
-              child: Icon(
-                Icons.arrow_back,
-                color: Theme.of(context).primaryColor,
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
             Text(
@@ -50,44 +60,82 @@ class _DetailPageState extends State<DetailPage> {
     }
 
     Widget _productImage() {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 56, right: 36).w,
-            child: Center(
-              child: Image.asset(
-                'assets/shoes2.png',
-                width: 333,
-                height: 193,
+      final image = widget.product?.galleries
+          ?.map((e) => Image.network(
+                e.url ?? '',
+                width: MediaQuery.of(context).size.width,
+                height: 300,
                 fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ],
-      );
-    }
+              ))
+          .toList();
 
-    Widget _productName() {
-      return RichText(
-        text: TextSpan(
+      return SingleChildScrollView(
+        child: Column(
           children: [
-            TextSpan(
-              text: 'Air Max 270 \n',
-              style: regularDisplay.copyWith(
-                fontSize: 40.w,
-                color: Theme.of(context).primaryColor,
+            SizedBox(
+              height: 240,
+              child: PageView.builder(
+                controller: controller,
+                // itemCount: image.length,
+                itemBuilder: (_, index) {
+                  return image?[index % image.length];
+                },
               ),
             ),
-            TextSpan(
-              text: 'Sneakers',
-              style: boldDisplay.copyWith(
-                fontSize: 40.w,
-                color: Theme.of(context).primaryColor,
+            50.heightBox,
+            SmoothPageIndicator(
+              controller: controller,
+              count: image!.length,
+              effect: WormEffect(
+                dotColor: Theme.of(context).primaryColor,
+                activeDotColor: blueColor,
+                dotHeight: 16,
+                dotWidth: 16,
               ),
             ),
           ],
         ),
+      );
+
+      // Column(
+      //   crossAxisAlignment: CrossAxisAlignment.start,
+      //   children: [
+      //     Padding(
+      //       padding: const EdgeInsets.only(left: 56, right: 36).w,
+      //       child: Center(
+      //         child: widget.product?.galleries?.isNotEmpty == true
+      //             ? Image.network(
+      //                 widget.product?.galleries![0].url ?? '',
+      //                 width: 333,
+      //                 height: 193,
+      //                 fit: BoxFit.cover,
+      //               )
+      //             : const SizedBox(),
+      //       ),
+      //     ),
+      //   ],
+      // );
+    }
+
+    Widget _productName() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.product?.name ?? '',
+            style: regularDisplay.copyWith(
+              fontSize: 40.w,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+          Text(
+            '\n${widget.product?.category?.name}',
+            style: boldDisplay.copyWith(
+              fontSize: 40.w,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ],
       );
     }
 
@@ -184,33 +232,67 @@ class _DetailPageState extends State<DetailPage> {
     }
 
     Widget _purchasingButton() {
-      return Container(
-        margin:
-            EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
-        width: 100.w,
-        height: 200.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          color: blueColor,
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/bag-icon.png',
-                width: 30.w,
-                height: 30.h,
-              ),
-              30.heightBox,
-              Text(
-                '\$ 350',
-                style: semiBoldDisplay.copyWith(
-                  fontSize: 16.w,
-                  color: Colors.white,
+      return GestureDetector(
+        onTap: () {
+          cartProvider.addCart(widget.product!);
+
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return CupertinoAlertDialog(
+                title: Text(
+                  'Product has been add to you cart',
+                  style: regularDisplay.copyWith(
+                    fontSize: 22,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
-              ),
-            ],
+                actions: [
+                  CupertinoDialogAction(
+                    child: Text(
+                      'See my Cart',
+                      style: semiBoldDisplay.copyWith(
+                        fontSize: 16,
+                        color: blueColor,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/cart');
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        child: Container(
+          margin:
+              EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+          width: 100.w,
+          height: 200.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            color: blueColor,
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/bag-icon.png',
+                  width: 30.w,
+                  height: 30.h,
+                ),
+                30.heightBox,
+                Text(
+                  '\$ ${widget.product!.price}',
+                  style: semiBoldDisplay.copyWith(
+                    fontSize: 16.w,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -224,7 +306,7 @@ class _DetailPageState extends State<DetailPage> {
           children: [
             34.heightBox,
             _appBar(),
-            85.heightBox,
+            20.heightBox,
             _productImage(),
             80.heightBox,
             Padding(
@@ -232,8 +314,14 @@ class _DetailPageState extends State<DetailPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _productName(),
-                  LikeButton(),
+                  Expanded(
+                    child: _productName(),
+                  ),
+                  LikeButton(
+                    onTap: () {
+                      wishlistProvider.setProduct(widget.product!);
+                    },
+                  ),
                 ],
               ),
             ),

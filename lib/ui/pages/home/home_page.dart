@@ -20,6 +20,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Access the ProductProvider using Provider.of
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+
+    // Access the products list from the ProductProvider
+    List<ProductModel> products = productProvider.products;
+
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     const Sidebar _sidebar = Sidebar();
 
@@ -159,7 +165,11 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       key: _scaffoldKey,
       drawer: Drawer(
-        child: _sidebar,
+        child: Consumer<AuthProvider>(
+          builder: (context, authProvider, _) {
+            return _sidebar;
+          },
+        ),
       ),
       body: SafeArea(
         bottom: false,
@@ -175,7 +185,7 @@ class _HomePageState extends State<HomePage> {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: ((mockProduct.length + 1) ~/ 2),
+              itemCount: ((products.length + 1) ~/ 2),
               itemBuilder: (context, index) {
                 int startIndex = index * 2;
                 int endIndex = startIndex + 1;
@@ -187,18 +197,18 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                         child: Padding(
                           padding: EdgeInsets.only(bottom: 32.h),
-                          child: CustomBigCard(
-                            product: mockProduct[startIndex],
+                          child: CustomCard(
+                            product: products[startIndex],
                           ),
                         ),
                       ),
-                      if (endIndex < mockProduct.length) SizedBox(width: 22.w),
-                      if (endIndex < mockProduct.length)
+                      if (endIndex < products.length) SizedBox(width: 22.w),
+                      if (endIndex < products.length)
                         Expanded(
                           child: Padding(
                             padding: EdgeInsets.only(bottom: 32.w),
-                            child: CustomBigCard(
-                              product: mockProduct[endIndex],
+                            child: CustomCard(
+                              product: products[endIndex],
                             ),
                           ),
                         ),

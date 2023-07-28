@@ -41,7 +41,7 @@ class MyThemes {
 
 //sizebox
 extension SizeBoxExtension on int {
-  Widget get widthBox => SizedBox(width: this.w);
+  Widget get widthBox => SizedBox(width: w);
 
-  Widget get heightBox => SizedBox(height: this.h);
+  Widget get heightBox => SizedBox(height: h);
 }

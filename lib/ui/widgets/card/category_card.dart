@@ -1,11 +1,11 @@
 part of '../widgets.dart';
 
 // ignore: must_be_immutable
-class BannerCard extends StatelessWidget {
-  ProductModel? product;
+class CategoryCard extends StatelessWidget {
+  MockProductModel? product;
   Function()? onTap;
 
-  BannerCard({
+  CategoryCard({
     super.key,
     this.product,
     this.onTap,

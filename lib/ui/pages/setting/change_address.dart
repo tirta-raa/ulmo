@@ -1,7 +1,7 @@
 part of '../pages.dart';
 
-class ChangeAddressPage extends StatelessWidget {
-  const ChangeAddressPage({super.key});
+class ChangeAddress extends StatelessWidget {
+  const ChangeAddress({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +103,7 @@ class ChangeAddressPage extends StatelessWidget {
                   text: 'Your Old Address',
                   radiusCircular: 24,
                   height: 98,
+                  scrollView: true,
                 ),
                 28.heightBox,
                 CustomTextField(
@@ -110,6 +111,7 @@ class ChangeAddressPage extends StatelessWidget {
                   text: 'Your New Address',
                   radiusCircular: 24,
                   height: 98,
+                  scrollView: true,
                 ),
               ],
             ),

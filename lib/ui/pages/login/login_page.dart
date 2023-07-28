@@ -11,7 +11,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isButtonEnabled = false;
-  bool remember = false;
+  bool _remember = false;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -34,18 +35,40 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  void _handleLogin() {
-    if (_isButtonEnabled) {
-      // Perform login logic here
-      // Example: authenticate user
-      // String email = _emailController.text;
-      // String password = _passwordController.text;
-      // Rest of the login logic
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    void _handleLogin() async {
+      setState(() {
+        _isLoading = true;
+      });
+
+      if (_isButtonEnabled) {
+        if (await authProvider.login(
+          email: _emailController.text,
+          password: _passwordController.text,
+        )) {
+          Navigator.pushNamed(context, '/home');
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: const Color(0xFFFF5545),
+              content: Text(
+                'Gagal Login!',
+                style: regularDisplay,
+              ),
+            ),
+          );
+        }
+      }
+
+      setState(() {
+        _isLoading = false;
+      });
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
@@ -82,14 +105,15 @@ class _LoginPageState extends State<LoginPage> {
                   InkWell(
                     onTap: () {
                       setState(() {
-                        remember = !remember;
+                        _remember = !_remember;
                       });
                     },
                     child: Row(
                       children: [
                         Icon(
                           Icons.check_circle,
-                          color: remember ? blueColor : const Color(0xFF8A91A9),
+                          color:
+                              _remember ? blueColor : const Color(0xFF8A91A9),
                         ),
                         12.widthBox,
                         Text(
@@ -103,16 +127,37 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             42.heightBox,
-            CustomButton(
-              text: 'Log In',
-              onPressed: _isButtonEnabled ? _handleLogin : null,
-              color: _isButtonEnabled ? blueColor : blueColor.withOpacity(0.5),
+            _isLoading
+                ? Center(
+                    child: LoadingAnimationWidget.fallingDot(
+                      color: Theme.of(context).primaryColor,
+                      size: 50.w,
+                    ),
+                  )
+                : CustomButton(
+                    text: 'Log In',
+                    onPressed: _isButtonEnabled ? _handleLogin : null,
+                    color: _isButtonEnabled
+                        ? blueColor
+                        : blueColor.withOpacity(0.5),
+                  ),
+            20.heightBox,
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/forgot');
+              },
+              child: Text(
+                'Forgot Password?',
+                style: regularDisplay.copyWith(color: blueColor),
+              ),
             ),
             20.heightBox,
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/register');
+              },
               child: Text(
-                'Forgot Password?',
+                'Dosent Have Account? register',
                 style: regularDisplay.copyWith(color: blueColor),
               ),
             ),

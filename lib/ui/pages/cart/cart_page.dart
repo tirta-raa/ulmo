@@ -10,6 +10,8 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     _appBar() {
       return Container(
         margin: const EdgeInsets.symmetric(horizontal: 32).w,
@@ -18,7 +20,7 @@ class _CartPageState extends State<CartPage> {
           children: [
             InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/home');
               },
               child: Container(
                 padding: EdgeInsets.all(10.r),
@@ -94,7 +96,7 @@ class _CartPageState extends State<CartPage> {
                           ),
                         ),
                         TextSpan(
-                          text: 'List (2)',
+                          text: 'List (${cartProvider.carts.length})',
                           style: boldDisplay.copyWith(
                             fontSize: 36.w,
                             color: Theme.of(context).primaryColor,
@@ -108,14 +110,17 @@ class _CartPageState extends State<CartPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32).w,
                   child: Column(
-                    children: [
-                      ChartListItem(),
-                      24.heightBox,
-                      ChartListItem(),
-                      100.heightBox,
-                    ],
+                    children: cartProvider.carts
+                        .map(
+                          (e) => Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: CartCard(e),
+                          ),
+                        )
+                        .toList(),
                   ),
                 ),
+                500.heightBox,
               ],
             ),
             Positioned.fill(
@@ -148,7 +153,7 @@ class _CartPageState extends State<CartPage> {
                                   color: const Color(0xFF8A91A9)),
                             ),
                             Text(
-                              '\$ 1375',
+                              '\$ ${cartProvider.totalPrice()}',
                               style: regularDisplay.copyWith(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 22,
@@ -159,7 +164,9 @@ class _CartPageState extends State<CartPage> {
                       ),
                       45.heightBox,
                       CustomButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/checkout');
+                        },
                         text: 'Checkout',
                       ),
                       42.heightBox,

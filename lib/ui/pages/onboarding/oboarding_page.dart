@@ -5,6 +5,11 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Brightness brightness = Theme.of(context).brightness;
+    final String brandImage = brightness == Brightness.dark
+        ? 'assets/brand1.png'
+        : 'assets/brand.png';
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -16,7 +21,7 @@ class OnboardingPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 32),
             child: Image.asset(
-              'assets/brand.png',
+              brandImage,
               width: 271,
               height: 257,
             ),
@@ -35,7 +40,9 @@ class OnboardingPage extends StatelessWidget {
           40.heightBox,
           CustomButton(
             text: 'Get Started',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed('/login');
+            },
           ),
         ],
       ),

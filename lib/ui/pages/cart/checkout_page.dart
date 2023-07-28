@@ -10,10 +10,28 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+    CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
     final Brightness brightness = Theme.of(context).brightness;
     final String locationImage = brightness == Brightness.dark
         ? 'assets/location2.png'
         : 'assets/location1.png';
+
+// token user bisa di panggil dari auth provider
+    handelCheckout() async {
+      if (await checkoutProvider.checkout(
+        authProvider.user?.token ?? '',
+        cartProvider.carts,
+        cartProvider.totalPrice(),
+      )) {
+        // jadi kalau udah beres ckekout langsung cartprovider.cart [ artinya list dari cart langsung di kosongin lagi
+        cartProvider.carts = [];
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/order-success', (route) => false);
+      }
+    }
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -28,7 +46,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/cart');
                     },
                     child: Container(
                       padding: EdgeInsets.all(10.r),
@@ -104,60 +122,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
             ),
             32.heightBox,
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 32.w),
-              padding: EdgeInsets.symmetric(horizontal: 18.w),
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).cardColor,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: RotationTransition(
-                      turns: const AlwaysStoppedAnimation(15 / 360),
-                      child: Image.asset(
-                        'assets/shoes1.png',
-                        width: 100.w,
-                        height: 100.h,
-                        fit: BoxFit.cover,
-                      ),
+            Column(
+              children: cartProvider.carts
+                  .map(
+                    (e) => Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: CheckoutCard(e),
                     ),
-                  ),
-                  12.widthBox,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Air Jordan',
-                        style: regularDisplay.copyWith(
-                          fontSize: 18,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                      2.heightBox,
-                      Text(
-                        '\$ 159',
-                        style: semiBoldDisplay.copyWith(
-                          fontSize: 20,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Text(
-                    '2 item',
-                    style: regularDisplay.copyWith(
-                      fontSize: 12,
-                      color: const Color(0xFF999999),
-                    ),
-                  ),
-                ],
-              ),
+                  )
+                  .toList(),
             ),
             54.heightBox,
             Container(
@@ -236,7 +209,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                       const Spacer(),
                       Text(
-                        '\$ 1375',
+                        '\$ ${cartProvider.totalPrice()}',
                         style: regularDisplay.copyWith(
                           fontSize: 22,
                           color: Theme.of(context).primaryColor,
@@ -256,7 +229,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                       const Spacer(),
                       Text(
-                        '\$ 80',
+                        'Free',
                         style: regularDisplay.copyWith(
                           fontSize: 22,
                           color: Theme.of(context).primaryColor,
@@ -276,7 +249,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                       const Spacer(),
                       Text(
-                        '\$ 1455',
+                        '\$ ${cartProvider.totalPrice()}',
                         style: regularDisplay.copyWith(
                           fontSize: 22,
                           color: Theme.of(context).primaryColor,
@@ -290,7 +263,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
             63.heightBox,
             CustomButton(
               text: 'Pay Now',
-              onPressed: () {},
+              onPressed: () {
+                handelCheckout();
+              },
             ),
             63.heightBox,
           ],

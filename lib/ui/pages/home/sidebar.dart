@@ -1,10 +1,25 @@
 part of '../pages.dart';
 
-class Sidebar extends StatelessWidget {
+class Sidebar extends StatefulWidget {
   const Sidebar({super.key});
 
   @override
+  State<Sidebar> createState() => _SidebarState();
+}
+
+class _SidebarState extends State<Sidebar> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Check for login status changes and trigger a rebuild
+    Provider.of<AuthProvider>(context, listen: false).loadUserIdAndTokenId();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel? user = authProvider.user;
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
@@ -66,7 +81,7 @@ class Sidebar extends StatelessWidget {
                         shape: BoxShape.circle,
                         image: DecorationImage(
                           image: NetworkImage(
-                            'https://plus.unsplash.com/premium_photo-1669748157807-30514e416843?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                            '${user?.profilePhotoUrl}',
                           ),
                           fit: BoxFit.cover,
                         ),
@@ -79,7 +94,7 @@ class Sidebar extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            'Alexender Hussain',
+                            '${user?.name}',
                             style: boldDisplay.copyWith(
                                 fontSize: 18,
                                 color: Theme.of(context).primaryColor),
@@ -87,10 +102,15 @@ class Sidebar extends StatelessWidget {
                             maxLines: 1,
                           ),
                           10.heightBox,
-                          Text(
-                            'Edit Profile',
-                            style: regularDisplay.copyWith(
-                              color: const Color(0xFF8A91A9),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).pushNamed('/profile');
+                            },
+                            child: Text(
+                              'Edit Profile',
+                              style: regularDisplay.copyWith(
+                                color: const Color(0xFF8A91A9),
+                              ),
                             ),
                           ),
                         ],
@@ -120,8 +140,10 @@ class Sidebar extends StatelessWidget {
                     ),
                     34.heightBox,
                     CustomTextButton(
-                      onTap: () {},
-                      text: 'Payment Cards',
+                      onTap: () {
+                        Navigator.pushNamed(context, '/wishlist');
+                      },
+                      text: 'Whishlist',
                     ),
                     34.heightBox,
                     CustomTextButton(
@@ -135,7 +157,10 @@ class Sidebar extends StatelessWidget {
                     ),
                     76.heightBox,
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/login');
+                        authProvider.logout();
+                      },
                       child: Row(
                         children: [
                           Image.asset(

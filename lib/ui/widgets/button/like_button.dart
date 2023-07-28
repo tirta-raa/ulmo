@@ -1,6 +1,12 @@
 part of '../widgets.dart';
 
 class LikeButton extends StatefulWidget {
+  final double width;
+  final double height;
+  final VoidCallback? onTap;
+
+  LikeButton({this.width = 100, this.height = 100, this.onTap});
+
   @override
   _LikeButtonState createState() => _LikeButtonState();
 }
@@ -11,8 +17,8 @@ class _LikeButtonState extends State<LikeButton> {
   SMIInput<bool>? _switchInput;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
     _loadRiveFile();
   }
 
@@ -39,6 +45,11 @@ class _LikeButtonState extends State<LikeButton> {
           input.value = !_switchInput!.value;
         }
       });
+
+      // Call the onTap callback if it's not null
+      if (widget.onTap != null) {
+        widget.onTap!();
+      }
     }
   }
 
@@ -48,8 +59,8 @@ class _LikeButtonState extends State<LikeButton> {
         ? GestureDetector(
             onTap: _toggleLike,
             child: SizedBox(
-              width: 100,
-              height: 100,
+              width: widget.width,
+              height: widget.height,
               child: Rive(
                 artboard: _artboard!,
                 fit: BoxFit.cover,
