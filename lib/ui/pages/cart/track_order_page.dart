@@ -52,7 +52,9 @@ class _TrackOrderPageState extends State<TrackOrderPage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/notification');
+                    },
                     child: Container(
                       padding: EdgeInsets.all(10.r),
                       width: 56.w,

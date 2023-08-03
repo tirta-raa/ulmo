@@ -125,12 +125,16 @@ class _SidebarState extends State<Sidebar> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextButton(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/category');
+                      },
                       text: 'All Categories',
                     ),
                     34.heightBox,
                     CustomTextButton(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/track-location');
+                      },
                       text: 'Track Order',
                     ),
                     34.heightBox,

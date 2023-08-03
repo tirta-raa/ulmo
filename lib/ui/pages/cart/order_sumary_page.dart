@@ -23,7 +23,8 @@ class _OrderSumaryPageState extends State<OrderSumaryPage> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/home', (route) => false);
                   },
                   child: Container(
                     padding: EdgeInsets.all(10.r),

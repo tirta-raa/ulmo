@@ -63,12 +63,17 @@ class OrderCard extends StatelessWidget {
                   color: blueColor,
                   borderRadius: BorderRadius.circular(39),
                 ),
-                child: Center(
-                  child: Text(
-                    'Shiping',
-                    style: regularDisplay.copyWith(
-                      fontSize: 12,
-                      color: Theme.of(context).primaryColor,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/track-order');
+                  },
+                  child: Center(
+                    child: Text(
+                      'Shiping',
+                      style: regularDisplay.copyWith(
+                        fontSize: 12,
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
                 ),

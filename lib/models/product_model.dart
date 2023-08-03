@@ -65,52 +65,52 @@ class ProductModel {
   }
 }
 
-class MockProductModel {
-  String image;
-  String title;
-  int price;
+// class MockProductModel {
+//   String image;
+//   String title;
+//   int price;
 
-  MockProductModel({
-    this.image = '',
-    this.price = 0,
-    this.title = '',
-  });
-}
+//   MockProductModel({
+//     this.image = '',
+//     this.price = 0,
+//     this.title = '',
+//   });
+// }
 
-List<MockProductModel> mockProduct = [
-  MockProductModel(
-    image: 'assets/shoes1.png',
-    title: 'Air Zoom',
-    price: 320,
-  ),
-  MockProductModel(
-    image: 'assets/shoes2.png',
-    title: 'Air Max',
-    price: 120,
-  ),
-  MockProductModel(
-    image: 'assets/shoes3.png',
-    title: 'Night Club Shoes',
-    price: 80,
-  ),
-  MockProductModel(
-    image: 'assets/shoes4.png',
-    title: 'Nike Dual Shoes',
-    price: 580,
-  ),
-  MockProductModel(
-    image: 'assets/shoes5.png',
-    title: 'Rebook Shoes',
-    price: 220,
-  ),
-  MockProductModel(
-    image: 'assets/shoes6.png',
-    title: 'Sport Shoes',
-    price: 110,
-  ),
-  MockProductModel(
-    image: 'assets/shoes7.png',
-    title: 'Extream Shoes',
-    price: 55,
-  ),
-];
+// List<MockProductModel> mockProduct = [
+//   MockProductModel(
+//     image: 'assets/shoes1.png',
+//     title: 'Air Zoom',
+//     price: 320,
+//   ),
+//   MockProductModel(
+//     image: 'assets/shoes2.png',
+//     title: 'Air Max',
+//     price: 120,
+//   ),
+//   MockProductModel(
+//     image: 'assets/shoes3.png',
+//     title: 'Night Club Shoes',
+//     price: 80,
+//   ),
+//   MockProductModel(
+//     image: 'assets/shoes4.png',
+//     title: 'Nike Dual Shoes',
+//     price: 580,
+//   ),
+//   MockProductModel(
+//     image: 'assets/shoes5.png',
+//     title: 'Rebook Shoes',
+//     price: 220,
+//   ),
+//   MockProductModel(
+//     image: 'assets/shoes6.png',
+//     title: 'Sport Shoes',
+//     price: 110,
+//   ),
+//   MockProductModel(
+//     image: 'assets/shoes7.png',
+//     title: 'Extream Shoes',
+//     price: 55,
+//   ),
+// ];

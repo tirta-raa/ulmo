@@ -18,7 +18,7 @@ class SettingPage extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/home');
                   },
                   child: Container(
                     padding: EdgeInsets.all(10.r),
@@ -58,17 +58,23 @@ class SettingPage extends StatelessWidget {
               children: [
                 CustomListTile(
                   text: 'General Settings',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/profile');
+                  },
                 ),
                 9.heightBox,
                 CustomListTile(
                   text: 'Account Settings',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/change-address');
+                  },
                 ),
                 9.heightBox,
                 CustomListTile(
                   text: 'Change Password',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/change-password');
+                  },
                 ),
                 9.heightBox,
                 CustomListTile(

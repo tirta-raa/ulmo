@@ -83,6 +83,7 @@ class MyApp extends StatelessWidget {
                     '/change-address': (context) => const ChangeAddress(),
                     '/setting': (context) => const SettingPage(),
                     '/wishlist': (context) => const WishListPage(),
+                    '/notification': (context) => const NotificationPage(),
                   },
                 ),
               );

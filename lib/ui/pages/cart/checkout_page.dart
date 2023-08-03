@@ -75,7 +75,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/notification');
+                    },
                     child: Container(
                       padding: EdgeInsets.all(10.r),
                       width: 56.w,

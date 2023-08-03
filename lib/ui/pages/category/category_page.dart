@@ -25,6 +25,8 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
@@ -126,20 +128,15 @@ class _CategoryPageState extends State<CategoryPage> {
             ),
           ),
           25.heightBox,
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: mockProduct.length,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 32).w,
-                padding: EdgeInsets.only(bottom: 24.h),
-                child: CategoryCard(
-                  product: mockProduct[index],
-                  onTap: () {},
-                ),
-              );
-            },
+          Column(
+            children: productProvider.products
+                .map(
+                  (e) => Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: CategoryCard(e),
+                  ),
+                )
+                .toList(),
           ),
         ],
       )),

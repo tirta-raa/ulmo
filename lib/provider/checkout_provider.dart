@@ -12,17 +12,6 @@ part of 'provider.dart';
 /// If an error occurs during the checkout process, it will be caught, printed to the console,
 /// and the method will return false.
 class CheckoutProvider with ChangeNotifier {
-  /// Initiates the checkout process by calling the `checkout` method from the [CheckoutServices].
-  ///
-  /// The [token] parameter is the authentication token required for the checkout request.
-  /// The [carts] parameter is a list of [CartModel] objects containing the items to be checked out.
-  /// The [totalPrice] parameter represents the total price of the items in the cart.
-  ///
-  /// Returns a [Future] that completes with a [bool] value indicating whether the checkout
-  /// was successful or not. If the checkout is successful, it returns true, otherwise, it returns false.
-  ///
-  /// If an error occurs during the checkout process, it will be caught, printed to the console,
-  /// and the method will return false.
   Future<bool> checkout(
       String token, List<CartModel> carts, double totalPrice) async {
     try {
@@ -41,3 +30,24 @@ class CheckoutProvider with ChangeNotifier {
     }
   }
 }
+
+
+
+
+// class CheckoutProvider with ChangeNotifier {
+//  Future<bool> checkout(
+//       String token, List<CartModel> carts, double totalPrice) async {
+//     try {
+//       // to initiate the checkout process.
+//       if (await CheckoutServices().checkout(token, carts, totalPrice)) {
+//         return true; // Checkout was successful
+//       } else {
+//         return false; // Checkout failed
+//       }
+//     } catch (e) {
+//     print(e);
+//       return false;
+//     }
+//   }
+// }
+
